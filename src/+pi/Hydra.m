@@ -12,7 +12,7 @@ classdef Hydra < AsciiComm
             % Call superclass constructor
             this = this@AsciiComm(varargin{:});
             
-            this.cConnection = this.cCONNECTION_TCPIP;
+            this.cConnection = this.cCONNECTION_TCPCLIENT;
             this.u8TerminatorWrite = uint8([13 10]);
             this.u8TerminatorRead = uint8([13 10]);
             
@@ -25,7 +25,7 @@ classdef Hydra < AsciiComm
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         % @param {double 1x1} dVal - velocity in mm/s (20 is good)
         function setVelocity(this, u8Ch, dVal)
-            cCmd = sprintf('%1.0f %d snv', u8Ch, dVal);
+            cCmd = sprintf('%1.0f %d snv', dVal, u8Ch);
             this.writeAscii(cCmd);
         end
         
@@ -33,7 +33,7 @@ classdef Hydra < AsciiComm
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         % @param {double 1x1} dVal - accedlleration in mm/s/s? 100 is good
         function setAcceleration(this, u8Ch, dVal)
-            cCmd = sprintf('%1.0f %d sna', u8Ch, dVal);
+            cCmd = sprintf('%1.0f %d sna', dVal,  u8Ch);
             this.writeAscii(cCmd);
         end
         
@@ -42,7 +42,8 @@ classdef Hydra < AsciiComm
         function d = getVelocity(this, u8Ch)
             cCmd = sprintf('%1.0f gnv', u8Ch);
             this.writeAscii(cCmd);
-            d = this.readAscii();
+            c = this.readAscii();
+            d = str2double(c);
         end
         
         
@@ -51,7 +52,8 @@ classdef Hydra < AsciiComm
         function d = getAcceleration(this, u8Ch)
             cCmd = sprintf('%1.0f gna', u8Ch);
             this.writeAscii(cCmd);
-            d = this.readAscii();
+            c = this.readAscii();
+            d = str2double(c);
         end
     end
     

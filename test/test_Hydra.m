@@ -7,9 +7,13 @@ cDirMpm = fullfile(cDirThis, '..', 'mpm-packages');
 addpath(genpath(cDirMpm));
 
 comm = pi.Hydra(...
-    'cTcpipHost', '192.169.10.11', ...
-    'cConnection', pi.Hydra.cCONNECTION_TCPCLIENT ...
+    'cTcpipHost', '192.168.10.11', ...
+    'u16TcpipPort', uint16(400) ...
 );
 
-comm.getVelocity(1);
+comm.clearBytesAvailable();
+comm.getVelocity(1)
+comm.getAcceleration(1)
+comm.setAcceleration(1, 90)
+comm.getAcceleration(1)
 delete(comm);
