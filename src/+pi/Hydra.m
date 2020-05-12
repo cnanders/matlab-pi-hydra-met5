@@ -1,4 +1,4 @@
-classdef Hydra < AsciiComm
+classdef Hydra < AsciiComm & AbstractHydra
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
