@@ -1,4 +1,4 @@
-classdef HydraVirtual < AsciiComm & AbstractHydra
+classdef HydraVirtual < AsciiComm & pi.AbstractHydra
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     

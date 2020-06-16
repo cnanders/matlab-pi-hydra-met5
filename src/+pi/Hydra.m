@@ -1,4 +1,4 @@
-classdef Hydra < AsciiComm & AbstractHydra
+classdef Hydra < AsciiComm & pi.AbstractHydra
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -40,7 +40,7 @@ classdef Hydra < AsciiComm & AbstractHydra
         % Returns the velocity in mm/2
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         function d = getVelocity(this, u8Ch)
-            cCmd = sprintf('%1.0f gnv', u8Ch);
+            cCmd = sprintf('%d gnv', u8Ch);
             this.writeAscii(cCmd);
             c = this.readAscii();
             d = str2double(c);
@@ -50,7 +50,7 @@ classdef Hydra < AsciiComm & AbstractHydra
         % Returns the velocity in mm/2
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         function d = getAcceleration(this, u8Ch)
-            cCmd = sprintf('%1.0f gna', u8Ch);
+            cCmd = sprintf('%d gna', u8Ch);
             this.writeAscii(cCmd);
             c = this.readAscii();
             d = str2double(c);
