@@ -6,6 +6,7 @@ classdef HydraVirtual < AsciiComm & pi.AbstractHydra
         
         dVelocity = [19 21]
         dAcceleration = [99 101]
+        dDeceleration = [89 80]
         
     end
     
@@ -25,7 +26,9 @@ classdef HydraVirtual < AsciiComm & pi.AbstractHydra
         function setAcceleration(this, u8Ch, dVal)
             this.dAcceleration(u8Ch) = dVal;
         end
-        
+        function setDeceleration(this, u8Ch, dVal)
+            this.dDeceleration(u8Ch) = dVal;
+        end
         % Returns the velocity in mm/2
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         function d = getVelocity(this, u8Ch)
@@ -37,6 +40,9 @@ classdef HydraVirtual < AsciiComm & pi.AbstractHydra
         % @param {uint8 1x1} u8Ch - channel (1 or 2)
         function d = getAcceleration(this, u8Ch)
             d = this.dAcceleration(u8Ch);
+        end
+        function d = getDeceleration(this, u8Ch)
+            d = this.dDeceleration(u8Ch);
         end
     end
     
